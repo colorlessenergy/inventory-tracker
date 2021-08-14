@@ -6,9 +6,11 @@ export default function ThemeSelector () {
     const toggleTheme = () => {
         setTheme((previousTheme) => {
             if (previousTheme === 'light') {
+                document.body.classList.add('dark');
                 return 'dark';
             }
 
+            document.body.classList.remove('dark');
             return 'light';
         });
     }
