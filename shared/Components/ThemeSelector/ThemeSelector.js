@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import classes from './ThemeSelector.module.scss';
+
 export default function ThemeSelector () {
     const [ theme, setTheme ] = useState('light');
 
@@ -35,8 +37,12 @@ export default function ThemeSelector () {
     }
 
     return (
-        <div onClick={ toggleTheme }>
-            { theme === 'light' ? ('🌙') : ('☀️') }
+        <div className="text-right">
+            <div
+                className={ classes["theme-selector"] }
+                onClick={ toggleTheme }>
+                { theme === 'light' ? ('🌙') : ('☀️') }
+            </div>
         </div>
     );
 }
