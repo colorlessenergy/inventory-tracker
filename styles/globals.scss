@@ -15,4 +15,11 @@ a {
   box-sizing: border-box;
 }
 
+@import "./module.scss";
 @import "./utilities.scss";
+
+@media (min-width: 600px) {
+  .modal-content {
+    width: 80%;
+  }
+}
