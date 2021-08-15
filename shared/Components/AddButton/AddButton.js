@@ -1,8 +1,10 @@
 import classes from './AddButton.module.scss';
 
-export default function AddButton () {
+export default function AddButton ({ handleClick }) {
     return (
-        <div className={ classes["add-button"] }>
+        <div
+            onClick={ handleClick }
+            className={ classes["add-button"] }>
             +
         </div>
     );
