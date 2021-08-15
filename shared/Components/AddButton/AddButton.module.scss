@@ -1,0 +1,18 @@
+@import "../../../styles/_variables.scss";
+
+.add-button {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  background-color: $green;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
