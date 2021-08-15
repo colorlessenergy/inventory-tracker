@@ -6,6 +6,22 @@
   display: flex;
 }
 
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
 .d-none {
   display: none;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
+.mb-6 {
+  margin-bottom: 60px;
 }
