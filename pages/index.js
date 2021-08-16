@@ -5,7 +5,8 @@ import Modal from '../shared/Components/Modal'
 import ThemeSelector from '../shared/Components/ThemeSelector/ThemeSelector'
 import AddButton from '../shared/Components/AddButton/AddButton';
 import AddItemBlock from '../shared/Components/AddItemBlock/AddItemBlock';
-import { getItemBlocks } from '../shared/ItemBlocks/ItemBlocks';
+
+import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
 
 export default function Home() {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
@@ -17,6 +18,17 @@ export default function Home() {
     useEffect(() => {
         setItemBlocks(getItemBlocks())
     }, []);
+
+    const updateAmountOfItems = ({ index, amount }) => {
+        let cloneItemBlocks = JSON.parse(JSON.stringify(itemBlocks));
+        if (cloneItemBlocks[index].amount === 0 && Math.sign(amount) === -1) {
+            return;
+        }
+
+        cloneItemBlocks[index].amount += amount;
+        setItemBlocks(cloneItemBlocks);
+        setItemBlock({ index, itemBlock: cloneItemBlocks[index] });       
+    }
 
     return (
         <div>
@@ -45,11 +57,15 @@ export default function Home() {
                                 </div>
 
                                 <div className="flex justify-content-between w-100">
-                                    <button className="card-button">
+                                    <button
+                                        className="card-button"
+                                        onClick={ () => updateAmountOfItems({ index, amount: -1 }) }>
                                         -
                                     </button>
 
-                                    <button className="card-button">
+                                    <button 
+                                        className="card-button"
+                                        onClick={ () => updateAmountOfItems({ index, amount: 1 }) }>
                                         +
                                     </button>
                                 </div>
