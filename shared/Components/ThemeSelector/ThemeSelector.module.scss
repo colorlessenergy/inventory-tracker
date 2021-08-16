@@ -1,3 +1,5 @@
+@import "../../../styles//variables.scss";
+
 .theme-selector {
   border: 3px solid #000000;
   border-radius: 50%;
@@ -8,4 +10,8 @@
   width: 40px;
 
   cursor: pointer;
+}
+
+:global(body.dark) .theme-selector {
+  border: 3px solid $white;
 }

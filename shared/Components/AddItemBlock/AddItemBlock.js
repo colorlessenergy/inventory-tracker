@@ -55,7 +55,7 @@ export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
                 required
                 className="mb-1" />
             
-            <div>
+            <div className="select-circle-text">
                 select a color
             </div>
             <div className="flex mb-6">
