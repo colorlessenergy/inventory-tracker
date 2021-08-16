@@ -52,6 +52,7 @@ export default function AddItemBlock ({ toggleModal }) {
             <div className="flex justify-content-between">
                 <button
                     type="button"
+                    onClick={ toggleModal }
                     className="button button-peach">
                     cancel
                 </button>
