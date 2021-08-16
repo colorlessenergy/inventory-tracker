@@ -10,6 +10,22 @@ import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
 
 export default function Home() {
+    useEffect(() => {
+        if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+            const wb = window.workbox;
+            const installNewVersion = () => {
+                wb.addEventListener('controlling', () => {
+                    window.location.reload();
+                });
+                
+                wb.messageSkipWaiting();
+            }
+
+            wb.addEventListener('waiting', installNewVersion);
+            wb.register();
+        }
+    }, []);
+
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const toggleModal = () => {
         setIsModalOpen(previousIsModalOpen => !previousIsModalOpen);
