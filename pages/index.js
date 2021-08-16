@@ -102,11 +102,13 @@ export default function Home() {
             </div>
 
             <AddButton handleClick={ toggleModal } />
-            <Modal isOpen={ isModalOpen }>
-                <AddItemBlock
-                    toggleModal={ toggleModal }
-                    setItemBlocks={ setItemBlocks } />
-            </Modal>
+            { isModalOpen ? (
+                <Modal isOpen={ isModalOpen }>
+                    <AddItemBlock
+                        toggleModal={ toggleModal }
+                        setItemBlocks={ setItemBlocks } />
+                </Modal>
+            ) : (null) }
 
             { isEditItemBlockModalOpen ? (
                 <Modal isOpen={ isEditItemBlockModalOpen }>
