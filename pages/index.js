@@ -26,35 +26,37 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <ThemeSelector />
+            <div className="container">
+                <ThemeSelector />
 
-            <div className="flex flex-wrap justify-content-between">
-                { itemBlocks.map((itemBlock, index) => {
-                    return (
-                        <div
-                            key={ index } 
-                            style={{ backgroundColor: itemBlock.color }}
-                            className="card">
-                            <div className="flex justify-content-between w-100">
-                                { itemBlock.name }
-                            </div> 
+                <div className="flex flex-wrap justify-content-between">
+                    { itemBlocks.map((itemBlock, index) => {
+                        return (
+                            <div
+                                key={ index }
+                                style={{ backgroundColor: itemBlock.color }}
+                                className="card">
+                                <div className="flex justify-content-between w-100">
+                                    { itemBlock.name }
+                                </div>
 
-                            <div className="text-large">
-                                { itemBlock.amount }
+                                <div className="text-large">
+                                    { itemBlock.amount }
+                                </div>
+
+                                <div className="flex justify-content-between w-100">
+                                    <button className="card-button">
+                                        -
+                                    </button>
+
+                                    <button className="card-button">
+                                        +
+                                    </button>
+                                </div>
                             </div>
-
-                            <div className="flex justify-content-between w-100">
-                                <button className="card-button">
-                                    -
-                                </button>
-                                
-                                <button className="card-button">
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    );
-                }) }
+                        );
+                    }) }
+                </div>
             </div>
 
             <AddButton handleClick={ toggleModal } />
