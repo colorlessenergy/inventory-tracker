@@ -31,6 +31,7 @@ export default function AddItemBlock () {
                 id="name"
                 value={ itemBlock.name }
                 onChange={ handleInputChange }
+                autoComplete="off"
                 required
                 className="mb-1" />
 
@@ -43,6 +44,7 @@ export default function AddItemBlock () {
                 id="amount"
                 value={ itemBlock.amount }
                 onChange={ handleInputChange }
+                autoComplete="off"
                 required
                 className="mb-6" />
 
