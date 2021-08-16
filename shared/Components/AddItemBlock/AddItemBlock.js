@@ -2,14 +2,21 @@ import { useState } from "react";
 
 import { addItemBlock } from "../../ItemBlocks/ItemBlocks";
 
+const colors = ["#ffe58f", "#eaff8f", "#b7eb8f", "#87e8de", "#ffd6e7"];
+
 export default function AddItemBlock ({ toggleModal }) {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
-        amount: ''
+        amount: '',
+        color: ''
     });
 
     const handleInputChange = (event) => {
         setItemBlock(previousItemBlock => ({ ...previousItemBlock, [ event.target.id ]: event.target.value }));
+    }
+
+    const setColor = (color) => {
+        setItemBlock(previousItemBlock => ({ ...previousItemBlock, color }));
     }
 
     const handleSubmit = (event) => {
@@ -47,7 +54,24 @@ export default function AddItemBlock ({ toggleModal }) {
                 onChange={ handleInputChange }
                 autoComplete="off"
                 required
-                className="mb-6" />
+                className="mb-1" />
+            
+            <div>
+                select a color
+            </div>
+            <div className="flex mb-6">
+                { colors.map(color => {
+                    return (
+                        <div
+                            key={ color }
+                            onClick={ () => setColor(color) }
+                            className="circle mr-1 cursor-pointer"
+                            style={{ backgroundColor: color, border: color === itemBlock.color ? "3px solid #000000" : null }}
+                            title={`${ color }`}>
+                        </div>
+                    );
+                }) }
+            </div>
 
             <div className="flex justify-content-between">
                 <button
