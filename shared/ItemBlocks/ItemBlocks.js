@@ -9,11 +9,20 @@ export function addItemBlock ({ itemBlock, setItemBlocks }) {
     setItemBlocks(itemBlocks);
 }
 
-
 export function getItemBlocks () {
     if (!localStorage.getItem('itemBlocks')) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
 
     return JSON.parse(localStorage.getItem('itemBlocks'));
+}
+
+export function setItemBlock ({ itemBlock, index }) {
+    if (!localStorage.getItem('itemBlocks')) {
+        localStorage.setItem('itemBlocks', JSON.stringify([]));
+    }
+
+    let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
+    itemBlocks[index] = itemBlock;
+    localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
 }
