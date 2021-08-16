@@ -30,6 +30,11 @@ export default function Home() {
         setItemBlock({ index, itemBlock: cloneItemBlocks[index] });       
     }
 
+    const [ isEditItemBlockModalOpen, setIsEditItemBlockModalOpen ] = useState(false);
+    const toggleEditItemBlockModal = () => {
+        setIsEditItemBlockModalOpen(previousIsEditItemBlockModalOpen=> !previousIsEditItemBlockModalOpen);
+    }
+
     return (
         <div>
             <Head>
@@ -52,7 +57,9 @@ export default function Home() {
                                     { itemBlock.name }
                                 </div>
 
-                                <div className="text-large">
+                                <div
+                                    className="text-large"
+                                    onClick={ toggleEditItemBlockModal }>
                                     { itemBlock.amount }
                                 </div>
 
@@ -80,6 +87,10 @@ export default function Home() {
                 <AddItemBlock
                     toggleModal={ toggleModal }
                     setItemBlocks={ setItemBlocks } />
+            </Modal>
+
+            <Modal isOpen={ isEditItemBlockModalOpen }>
+
             </Modal>
         </div>
     )
