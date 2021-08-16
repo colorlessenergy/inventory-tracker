@@ -77,7 +77,7 @@ export default function Home() {
                                 </div>
 
                                 <div
-                                    className="text-large"
+                                    className="text-large cursor-pointer"
                                     onClick={ () => openEditItemBlockModal({ itemBlock, index })  }>
                                     { itemBlock.amount }
                                 </div>
