@@ -1,6 +1,6 @@
 {
-  "name": "calorie tracker",
-  "short_name": "calorie tracker",
+  "name": "inventory tracker",
+  "short_name": "inventory tracker",
   "icons": [
     {
       "src": "icons/192.png",
@@ -9,7 +9,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "icons/383.png",
+      "src": "icons/384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
