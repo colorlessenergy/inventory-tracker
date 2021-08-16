@@ -4,7 +4,7 @@ import { addItemBlock } from "../../ItemBlocks/ItemBlocks";
 
 const colors = ["#ffe58f", "#eaff8f", "#b7eb8f", "#87e8de", "#ffd6e7"];
 
-export default function AddItemBlock ({ toggleModal }) {
+export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
         amount: '',
@@ -22,7 +22,7 @@ export default function AddItemBlock ({ toggleModal }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        addItemBlock(itemBlock);
+        addItemBlock({ itemBlock, setItemBlocks });
         toggleModal();
     }
 

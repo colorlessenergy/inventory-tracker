@@ -1,4 +1,4 @@
-export function addItemBlock (itemBlock) {
+export function addItemBlock ({ itemBlock, setItemBlocks }) {
     if (!localStorage.getItem('itemBlocks')) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
@@ -6,6 +6,7 @@ export function addItemBlock (itemBlock) {
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks.push(itemBlock);
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
+    setItemBlocks(itemBlocks);
 }
 
 
