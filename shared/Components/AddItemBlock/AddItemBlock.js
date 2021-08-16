@@ -31,6 +31,7 @@ export default function AddItemBlock () {
                 id="name"
                 value={ itemBlock.name }
                 onChange={ handleInputChange }
+                required
                 className="mb-1" />
 
             <label htmlFor="amount">
@@ -42,6 +43,7 @@ export default function AddItemBlock () {
                 id="amount"
                 value={ itemBlock.amount }
                 onChange={ handleInputChange }
+                required
                 className="mb-6" />
 
             <div className="flex justify-content-between">
