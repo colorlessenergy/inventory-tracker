@@ -6,6 +6,10 @@
   display: flex;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-direction-column {
   flex-direction: column;
 }
@@ -24,4 +28,8 @@
 
 .mb-6 {
   margin-bottom: 60px;
+}
+
+.w-100 {
+  width: 100%;
 }
