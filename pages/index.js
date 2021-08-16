@@ -5,6 +5,7 @@ import Modal from '../shared/Components/Modal'
 import ThemeSelector from '../shared/Components/ThemeSelector/ThemeSelector'
 import AddButton from '../shared/Components/AddButton/AddButton';
 import AddItemBlock from '../shared/Components/AddItemBlock/AddItemBlock';
+import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
 
@@ -33,6 +34,24 @@ export default function Home() {
     const [ isEditItemBlockModalOpen, setIsEditItemBlockModalOpen ] = useState(false);
     const toggleEditItemBlockModal = () => {
         setIsEditItemBlockModalOpen(previousIsEditItemBlockModalOpen=> !previousIsEditItemBlockModalOpen);
+        setEditingItemBlock({
+            name: '',
+            amount: 0,
+            color: '',
+            index: null
+        });
+    }
+
+    const [ editingItemBlock, setEditingItemBlock ] = useState({
+        name: '',
+        amount: 0,
+        color: '',
+        index: null
+    });
+
+    const openEditItemBlockModal = ({ itemBlock, index }) => {
+        toggleEditItemBlockModal();
+        setEditingItemBlock({ ...itemBlock, index });
     }
 
     return (
@@ -59,7 +78,7 @@ export default function Home() {
 
                                 <div
                                     className="text-large"
-                                    onClick={ toggleEditItemBlockModal }>
+                                    onClick={ () => openEditItemBlockModal({ itemBlock, index })  }>
                                     { itemBlock.amount }
                                 </div>
 
@@ -89,9 +108,14 @@ export default function Home() {
                     setItemBlocks={ setItemBlocks } />
             </Modal>
 
-            <Modal isOpen={ isEditItemBlockModalOpen }>
-
-            </Modal>
+            { isEditItemBlockModalOpen ? (
+                <Modal isOpen={ isEditItemBlockModalOpen }>
+                    <EditItemBlock 
+                        itemBlock={ editingItemBlock }
+                        toggleModal={ toggleEditItemBlockModal }
+                        setItemBlocks={ setItemBlocks } />
+                </Modal>
+            ) : (null) }
         </div>
     )
 }
