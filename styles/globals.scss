@@ -20,6 +20,13 @@ a {
 @import "./_module.scss";
 @import "./utilities.scss";
 
+@media (min-width: 1200px) {
+  .container {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+}
+
 @media (min-width: 600px) {
   .modal-content {
     width: 80%;
