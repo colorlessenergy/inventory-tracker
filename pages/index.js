@@ -17,8 +17,8 @@ export default function Home() {
 
     let [ itemBlocks, setItemBlocks ] = useState([]);
     useEffect(() => {
-        setItemBlocks(getItemBlocks())
-    }, []);
+        setItemBlocks(getItemBlocks());
+    }, typeof localStorage !== 'undefined' ? [localStorage.getItem('itemBlocks')] : []);
 
     const updateAmountOfItems = ({ index, amount }) => {
         let cloneItemBlocks = JSON.parse(JSON.stringify(itemBlocks));
