@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { addItemBlock } from "../../ItemBlocks/ItemBlocks";
 
-export default function AddItemBlock () {
+export default function AddItemBlock ({ toggleModal }) {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
         amount: ''
@@ -16,6 +16,7 @@ export default function AddItemBlock () {
         event.preventDefault();
 
         addItemBlock(itemBlock);
+        toggleModal();
     }
 
     return (

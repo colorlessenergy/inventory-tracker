@@ -25,7 +25,7 @@ export default function Home() {
 
             <AddButton handleClick={ toggleModal } />
             <Modal isOpen={ isModalOpen }>
-                <AddItemBlock />
+                <AddItemBlock toggleModal={ toggleModal } />
             </Modal>
         </div>
     )
