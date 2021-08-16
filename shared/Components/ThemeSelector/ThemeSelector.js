@@ -37,7 +37,7 @@ export default function ThemeSelector () {
     }
 
     return (
-        <div className="text-right mt-1 mb-1">
+        <div className="text-right mb-1">
             <div
                 className={ classes["theme-selector"] }
                 onClick={ toggleTheme }>
