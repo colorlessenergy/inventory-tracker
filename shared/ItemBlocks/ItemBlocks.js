@@ -3,10 +3,16 @@ export function addItemBlock ({ itemBlock, setItemBlocks }) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
 
+    itemBlock.amount = parseInt(itemBlock.amount);
+
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks.push(itemBlock);
+
+    if (setItemBlocks) {
+        setItemBlocks(itemBlocks);
+    }
+
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
-    setItemBlocks(itemBlocks);
 }
 
 export function getItemBlocks () {
@@ -21,6 +27,8 @@ export function setItemBlock ({ itemBlock, index, setItemBlocks }) {
     if (!localStorage.getItem('itemBlocks')) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
+
+    itemBlock.amount = parseInt(itemBlock.amount);
 
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks[index] = itemBlock;
