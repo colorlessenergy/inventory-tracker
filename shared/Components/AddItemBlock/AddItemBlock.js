@@ -7,7 +7,7 @@ const colors = ["#ffe58f", "#eaff8f", "#b7eb8f", "#87e8de", "#ffd6e7"];
 export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
-        amount: '',
+        amount: 0,
         color: ''
     });
 
