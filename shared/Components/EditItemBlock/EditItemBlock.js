@@ -32,12 +32,12 @@ export default function EditItemBlock ({ itemBlock, toggleModal, setItemBlocks }
             color: updatedItemBlock.color
         }
 
-        setItemBlock({ itemBlock: itemBlockObject, index: itemBlock.index, setItemBlocks });
+        setItemBlock({ itemBlock: itemBlockObject, index: itemBlock.index });
         toggleModal();
     }
 
     const removeItemBlockFromLocalStorage = () => {
-       removeItemBlock({ index: updatedItemBlock.index, setItemBlocks });
+       removeItemBlock(updatedItemBlock.index);
        toggleModal();
     }
 

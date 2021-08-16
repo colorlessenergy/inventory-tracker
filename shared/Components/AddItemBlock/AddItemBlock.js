@@ -22,7 +22,7 @@ export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        addItemBlock({ itemBlock, setItemBlocks });
+        addItemBlock(itemBlock);
         toggleModal();
     }
 

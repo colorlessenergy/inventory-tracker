@@ -1,4 +1,4 @@
-export function addItemBlock ({ itemBlock, setItemBlocks }) {
+export function addItemBlock (itemBlock) {
     if (!localStorage.getItem('itemBlocks')) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
@@ -7,11 +7,6 @@ export function addItemBlock ({ itemBlock, setItemBlocks }) {
 
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks.push(itemBlock);
-
-    if (setItemBlocks) {
-        setItemBlocks(itemBlocks);
-    }
-
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
 }
 
@@ -23,7 +18,7 @@ export function getItemBlocks () {
     return JSON.parse(localStorage.getItem('itemBlocks'));
 }
 
-export function setItemBlock ({ itemBlock, index, setItemBlocks }) {
+export function setItemBlock ({ itemBlock, index }) {
     if (!localStorage.getItem('itemBlocks')) {
         localStorage.setItem('itemBlocks', JSON.stringify([]));
     }
@@ -32,21 +27,11 @@ export function setItemBlock ({ itemBlock, index, setItemBlocks }) {
 
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks[index] = itemBlock;
-
-    if (setItemBlocks) {
-        setItemBlocks(itemBlocks);
-    }
-
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
 }
 
-export function removeItemBlock ({ index, setItemBlocks }) {
+export function removeItemBlock ({ index }) {
     let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
     itemBlocks.splice(index, 1);
-
-    if (setItemBlocks) {
-        setItemBlocks(itemBlocks);
-    }
-
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
 }
