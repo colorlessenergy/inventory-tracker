@@ -31,3 +31,14 @@ export function setItemBlock ({ itemBlock, index, setItemBlocks }) {
 
     localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
 }
+
+export function removeItemBlock ({ index, setItemBlocks }) {
+    let itemBlocks = JSON.parse(localStorage.getItem('itemBlocks'));
+    itemBlocks.splice(index, 1);
+
+    if (setItemBlocks) {
+        setItemBlocks(itemBlocks);
+    }
+
+    localStorage.setItem('itemBlocks', JSON.stringify(itemBlocks));
+}
