@@ -33,6 +33,7 @@ export default function Home() {
                     return (
                         <div
                             key={ index } 
+                            style={{ backgroundColor: itemBlock.color }}
                             className="card">
                             <div className="flex justify-content-between w-100">
                                 { itemBlock.name }
