@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { addItemBlock } from "../../ItemBlocks/ItemBlocks";
+
 export default function AddItemBlock () {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
@@ -10,8 +12,16 @@ export default function AddItemBlock () {
         setItemBlock(previousItemBlock => ({ ...previousItemBlock, [ event.target.id ]: event.target.value }));
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        addItemBlock(itemBlock);
+    }
+
     return (
-        <form className="flex flex-direction-column">
+        <form
+            onSubmit={ handleSubmit }
+            className="flex flex-direction-column">
             <label htmlFor="name">
                 name
             </label>
