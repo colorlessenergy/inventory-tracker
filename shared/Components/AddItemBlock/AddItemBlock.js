@@ -8,7 +8,7 @@ export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
     const [ itemBlock, setItemBlock ] = useState({
         name: '',
         amount: 0,
-        color: ''
+        color: '#ffe58f'
     });
 
     const handleInputChange = (event) => {
