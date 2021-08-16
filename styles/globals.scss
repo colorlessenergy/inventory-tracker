@@ -1,9 +1,15 @@
 html,
 body {
-  padding: 0;
+  height: 100%;
   margin: 0;
+  padding: 0;
+
   background-color: #fdfaf6;
   font-family: "Open Sans", sans-serif;
+}
+
+body {
+  padding: 10px 0 0 0;
 }
 
 a {
