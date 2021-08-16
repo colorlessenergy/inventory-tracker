@@ -67,7 +67,6 @@ export default function EditItemBlock ({ itemBlock, toggleModal, setItemBlocks }
                 id="amount"
                 value={ updatedItemBlock.amount }
                 onChange={ handleInputChange }
-                autoComplete="off"
                 required
                 className="mb-1" />
             

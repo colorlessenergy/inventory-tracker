@@ -52,7 +52,6 @@ export default function AddItemBlock ({ toggleModal, setItemBlocks }) {
                 id="amount"
                 value={ itemBlock.amount }
                 onChange={ handleInputChange }
-                autoComplete="off"
                 required
                 className="mb-1" />
             
