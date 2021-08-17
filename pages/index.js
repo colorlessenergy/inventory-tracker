@@ -42,38 +42,39 @@ export default function Home() {
         setItemBlocks(getItemBlocks());
     }, typeof localStorage !== 'undefined' ? [localStorage.getItem('itemBlocks')] : []);
 
-    const updateAmountOfItems = ({ index, amount }) => {
+    const updateAmountOfItems = ({ updatedItemBlock, amount }) => {
         let cloneItemBlocks = JSON.parse(JSON.stringify(itemBlocks));
+        const index = cloneItemBlocks.findIndex(itemBlock => itemBlock.ID === updatedItemBlock.ID);
         if (cloneItemBlocks[index].amount === 0 && Math.sign(amount) === -1) {
             return;
         }
 
         cloneItemBlocks[index].amount += amount;
         setItemBlocks(cloneItemBlocks);
-        setItemBlock({ index, itemBlock: cloneItemBlocks[index] });       
+        setItemBlock(cloneItemBlocks[index]);       
     }
 
     const [ isEditItemBlockModalOpen, setIsEditItemBlockModalOpen ] = useState(false);
     const toggleEditItemBlockModal = () => {
         setIsEditItemBlockModalOpen(previousIsEditItemBlockModalOpen=> !previousIsEditItemBlockModalOpen);
         setEditingItemBlock({
+            ID: null,
             name: '',
             amount: 0,
-            color: '',
-            index: null
+            color: ''
         });
     }
 
     const [ editingItemBlock, setEditingItemBlock ] = useState({
+        ID: null,
         name: '',
         amount: 0,
-        color: '',
-        index: null
+        color: ''
     });
 
-    const openEditItemBlockModal = ({ itemBlock, index }) => {
+    const openEditItemBlockModal = (itemBlock) => {
         toggleEditItemBlockModal();
-        setEditingItemBlock({ ...itemBlock, index });
+        setEditingItemBlock(itemBlock);
     }
 
     const [ sortSetting, setSortSetting ] = useState('');
@@ -134,20 +135,20 @@ export default function Home() {
 
                                 <div
                                     className="text-large cursor-pointer"
-                                    onClick={ () => openEditItemBlockModal({ itemBlock, index })  }>
+                                    onClick={ () => openEditItemBlockModal(itemBlock)  }>
                                     { itemBlock.amount }
                                 </div>
 
                                 <div className="flex justify-content-between w-100">
                                     <button
                                         className="card-button"
-                                        onClick={ () => updateAmountOfItems({ index, amount: -1 }) }>
+                                        onClick={ () => updateAmountOfItems({ updatedItemBlock: itemBlock, amount: -1 }) }>
                                         -
                                     </button>
 
                                     <button 
                                         className="card-button"
-                                        onClick={ () => updateAmountOfItems({ index, amount: 1 }) }>
+                                        onClick={ () => updateAmountOfItems({ updatedItemBlock: itemBlock, amount: 1 }) }>
                                         +
                                     </button>
                                 </div>
