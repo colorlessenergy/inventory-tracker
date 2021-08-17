@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 import Modal from '../shared/Components/Modal'
 import ThemeSelector from '../shared/Components/ThemeSelector/ThemeSelector'
-import FilterItem from '../shared/Components/FilterItem/FilterItem';
+import SortItem from '../shared/Components/SortItem/SortItem';
 import AddButton from '../shared/Components/AddButton/AddButton';
 import AddItemBlock from '../shared/Components/AddItemBlock/AddItemBlock';
 import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
@@ -115,7 +115,7 @@ export default function Home() {
 
                 { sortSettings.map(fixedSortSetting => {
                     return (
-                        <FilterItem
+                        <SortItem
                             key={ fixedSortSetting }
                             text={ fixedSortSetting } 
                             isActive={ fixedSortSetting === sortSetting }
