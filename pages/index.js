@@ -10,7 +10,7 @@ import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
 
-const filterItems = [
+const sortSettings = [
     {
         type: 'greatest'
     },
@@ -80,6 +80,31 @@ export default function Home() {
         setEditingItemBlock({ ...itemBlock, index });
     }
 
+    const [ sortSetting, setSortSetting ] = useState('');
+    const handleSortClick = (setting) => {
+        if (setting === sortSetting) {
+            return setSortSetting('');
+        }
+
+        return setSortSetting(setting);
+    }
+
+    const sortItems = (item1, item2) => {
+        if (sortSetting === 'least') {
+            return item1.amount - item2.amount;
+        } else if (sortSetting === 'greatest') {
+            return item2.amount - item1.amount;
+        }
+    }
+
+    const conditionallySortItems = () => {
+        if (sortSetting === '') {
+            return itemBlocks;
+        }
+
+        return JSON.parse(JSON.stringify(itemBlocks)).sort(sortItems);
+    }
+    
     return (
         <div>
             <Head>
@@ -91,16 +116,16 @@ export default function Home() {
             <div className="container">
                 <ThemeSelector />
 
-                { filterItems.map(filterItem => {
+                { sortSettings.map(sortSetting => {
                     return (
                         <FilterItem
-                            text={ filterItem.type } 
-                            handleClick={ () => handleSortClick(filterItem.type) } />
+                            text={ sortSetting.type } 
+                            handleClick={ () => handleSortClick(sortSetting.type) } />
                     );
                 }) }
 
                 <div className="flex flex-wrap justify-content-between">
-                    { itemBlocks.map((itemBlock, index) => {
+                    { conditionallySortItems().map((itemBlock, index) => {
                         return (
                             <div
                                 key={ index }
