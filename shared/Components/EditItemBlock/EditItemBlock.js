@@ -3,7 +3,7 @@ import { removeItemBlock, setItemBlock } from "../../ItemBlocks/ItemBlocks";
 
 const colors = ["#ffe58f", "#eaff8f", "#b7eb8f", "#87e8de", "#ffd6e7"];
 
-export default function EditItemBlock ({ itemBlock, toggleModal, setItemBlocks }) {
+export default function EditItemBlock ({ itemBlock, toggleModal }) {
     const [ updatedItemBlock, setUpdatedItemBlock ] = useState({
         ID: null,
         name: '',

@@ -162,8 +162,7 @@ export default function Home() {
             { isModalOpen ? (
                 <Modal isOpen={ isModalOpen }>
                     <AddItemBlock
-                        toggleModal={ toggleModal }
-                        setItemBlocks={ setItemBlocks } />
+                        toggleModal={ toggleModal } />
                 </Modal>
             ) : (null) }
 
@@ -171,8 +170,7 @@ export default function Home() {
                 <Modal isOpen={ isEditItemBlockModalOpen }>
                     <EditItemBlock 
                         itemBlock={ editingItemBlock }
-                        toggleModal={ toggleEditItemBlockModal }
-                        setItemBlocks={ setItemBlocks } />
+                        toggleModal={ toggleEditItemBlockModal } />
                 </Modal>
             ) : (null) }
         </div>
