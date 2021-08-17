@@ -116,6 +116,7 @@ export default function Home() {
                 { sortSettings.map(fixedSortSetting => {
                     return (
                         <FilterItem
+                            key={ fixedSortSetting }
                             text={ fixedSortSetting } 
                             isActive={ fixedSortSetting === sortSetting }
                             handleClick={ () => handleSortClick(fixedSortSetting) } />
