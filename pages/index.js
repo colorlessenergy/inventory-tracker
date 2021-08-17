@@ -3,11 +3,21 @@ import Head from 'next/head'
 
 import Modal from '../shared/Components/Modal'
 import ThemeSelector from '../shared/Components/ThemeSelector/ThemeSelector'
+import FilterItem from '../shared/Components/FilterItem/FilterItem';
 import AddButton from '../shared/Components/AddButton/AddButton';
 import AddItemBlock from '../shared/Components/AddItemBlock/AddItemBlock';
 import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
+
+const filterItems = [
+    {
+        type: 'greatest'
+    },
+    {
+        type: 'least'
+    }
+];
 
 export default function Home() {
     useEffect(() => {
@@ -80,6 +90,14 @@ export default function Home() {
 
             <div className="container">
                 <ThemeSelector />
+
+                { filterItems.map(filterItem => {
+                    return (
+                        <FilterItem
+                            text={ filterItem.type } 
+                            handleClick={ () => handleSortClick(filterItem.type) } />
+                    );
+                }) }
 
                 <div className="flex flex-wrap justify-content-between">
                     { itemBlocks.map((itemBlock, index) => {
