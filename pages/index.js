@@ -124,10 +124,10 @@ export default function Home() {
                 }) }
 
                 <div className="flex flex-wrap justify-content-between">
-                    { conditionallySortItems().map((itemBlock, index) => {
+                    { conditionallySortItems().map(itemBlock => {
                         return (
                             <div
-                                key={ index }
+                                key={ itemBlock.ID }
                                 style={{ backgroundColor: itemBlock.color }}
                                 className="card">
                                 <div className="flex justify-content-between w-100">
