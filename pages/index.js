@@ -11,12 +11,8 @@ import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
 
 const sortSettings = [
-    {
-        type: 'greatest'
-    },
-    {
-        type: 'least'
-    }
+    'greatest',
+    'least'
 ];
 
 export default function Home() {
@@ -116,11 +112,12 @@ export default function Home() {
             <div className="container">
                 <ThemeSelector />
 
-                { sortSettings.map(sortSetting => {
+                { sortSettings.map(fixedSortSetting => {
                     return (
                         <FilterItem
-                            text={ sortSetting.type } 
-                            handleClick={ () => handleSortClick(sortSetting.type) } />
+                            text={ fixedSortSetting } 
+                            isActive={ fixedSortSetting === sortSetting }
+                            handleClick={ () => handleSortClick(fixedSortSetting) } />
                     );
                 }) }
 
