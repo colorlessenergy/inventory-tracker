@@ -3,12 +3,12 @@ import { removeItemBlock, setItemBlock } from "../../ItemBlocks/ItemBlocks";
 
 const colors = ["#ffe58f", "#eaff8f", "#b7eb8f", "#87e8de", "#ffd6e7"];
 
-export default function EditItemBlock ({ itemBlock, toggleModal, setItemBlocks }) {
+export default function EditItemBlock ({ itemBlock, toggleModal }) {
     const [ updatedItemBlock, setUpdatedItemBlock ] = useState({
+        ID: null,
         name: '',
         amount: 0,
         color: '',
-        index: null
     });
 
     useEffect(() => {
@@ -27,17 +27,18 @@ export default function EditItemBlock ({ itemBlock, toggleModal, setItemBlocks }
         event.preventDefault();
 
         const itemBlockObject = {
+            ID: updatedItemBlock.ID,
             name: updatedItemBlock.name,
             amount: updatedItemBlock.amount,
             color: updatedItemBlock.color
         }
 
-        setItemBlock({ itemBlock: itemBlockObject, index: itemBlock.index });
+        setItemBlock(itemBlockObject);
         toggleModal();
     }
 
     const removeItemBlockFromLocalStorage = () => {
-       removeItemBlock(updatedItemBlock.index);
+       removeItemBlock(updatedItemBlock);
        toggleModal();
     }
 

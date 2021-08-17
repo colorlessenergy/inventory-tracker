@@ -3,11 +3,17 @@ import Head from 'next/head'
 
 import Modal from '../shared/Components/Modal'
 import ThemeSelector from '../shared/Components/ThemeSelector/ThemeSelector'
+import SortItem from '../shared/Components/SortItem/SortItem';
 import AddButton from '../shared/Components/AddButton/AddButton';
 import AddItemBlock from '../shared/Components/AddItemBlock/AddItemBlock';
 import EditItemBlock from '../shared/Components/EditItemBlock/EditItemBlock';
 
 import { getItemBlocks, setItemBlock } from '../shared/ItemBlocks/ItemBlocks';
+
+const sortSettings = [
+    'greatest',
+    'least'
+];
 
 export default function Home() {
     useEffect(() => {
@@ -36,40 +42,66 @@ export default function Home() {
         setItemBlocks(getItemBlocks());
     }, typeof localStorage !== 'undefined' ? [localStorage.getItem('itemBlocks')] : []);
 
-    const updateAmountOfItems = ({ index, amount }) => {
+    const updateAmountOfItems = ({ updatedItemBlock, amount }) => {
         let cloneItemBlocks = JSON.parse(JSON.stringify(itemBlocks));
+        const index = cloneItemBlocks.findIndex(itemBlock => itemBlock.ID === updatedItemBlock.ID);
         if (cloneItemBlocks[index].amount === 0 && Math.sign(amount) === -1) {
             return;
         }
 
         cloneItemBlocks[index].amount += amount;
         setItemBlocks(cloneItemBlocks);
-        setItemBlock({ index, itemBlock: cloneItemBlocks[index] });       
+        setItemBlock(cloneItemBlocks[index]);       
     }
 
     const [ isEditItemBlockModalOpen, setIsEditItemBlockModalOpen ] = useState(false);
     const toggleEditItemBlockModal = () => {
         setIsEditItemBlockModalOpen(previousIsEditItemBlockModalOpen=> !previousIsEditItemBlockModalOpen);
         setEditingItemBlock({
+            ID: null,
             name: '',
             amount: 0,
-            color: '',
-            index: null
+            color: ''
         });
     }
 
     const [ editingItemBlock, setEditingItemBlock ] = useState({
+        ID: null,
         name: '',
         amount: 0,
-        color: '',
-        index: null
+        color: ''
     });
 
-    const openEditItemBlockModal = ({ itemBlock, index }) => {
+    const openEditItemBlockModal = (itemBlock) => {
         toggleEditItemBlockModal();
-        setEditingItemBlock({ ...itemBlock, index });
+        setEditingItemBlock(itemBlock);
     }
 
+    const [ sortSetting, setSortSetting ] = useState('');
+    const handleSortClick = (setting) => {
+        if (setting === sortSetting) {
+            return setSortSetting('');
+        }
+
+        return setSortSetting(setting);
+    }
+
+    const sortItems = (item1, item2) => {
+        if (sortSetting === 'least') {
+            return item1.amount - item2.amount;
+        } else if (sortSetting === 'greatest') {
+            return item2.amount - item1.amount;
+        }
+    }
+
+    const conditionallySortItems = () => {
+        if (sortSetting === '') {
+            return itemBlocks;
+        }
+
+        return JSON.parse(JSON.stringify(itemBlocks)).sort(sortItems);
+    }
+    
     return (
         <div>
             <Head>
@@ -81,11 +113,21 @@ export default function Home() {
             <div className="container">
                 <ThemeSelector />
 
+                { sortSettings.map(fixedSortSetting => {
+                    return (
+                        <SortItem
+                            key={ fixedSortSetting }
+                            text={ fixedSortSetting } 
+                            isActive={ fixedSortSetting === sortSetting }
+                            handleClick={ () => handleSortClick(fixedSortSetting) } />
+                    );
+                }) }
+
                 <div className="flex flex-wrap justify-content-between">
-                    { itemBlocks.map((itemBlock, index) => {
+                    { conditionallySortItems().map(itemBlock => {
                         return (
                             <div
-                                key={ index }
+                                key={ itemBlock.ID }
                                 style={{ backgroundColor: itemBlock.color }}
                                 className="card">
                                 <div className="flex justify-content-between w-100">
@@ -94,20 +136,20 @@ export default function Home() {
 
                                 <div
                                     className="text-large cursor-pointer"
-                                    onClick={ () => openEditItemBlockModal({ itemBlock, index })  }>
+                                    onClick={ () => openEditItemBlockModal(itemBlock)  }>
                                     { itemBlock.amount }
                                 </div>
 
                                 <div className="flex justify-content-between w-100">
                                     <button
                                         className="card-button"
-                                        onClick={ () => updateAmountOfItems({ index, amount: -1 }) }>
+                                        onClick={ () => updateAmountOfItems({ updatedItemBlock: itemBlock, amount: -1 }) }>
                                         -
                                     </button>
 
                                     <button 
                                         className="card-button"
-                                        onClick={ () => updateAmountOfItems({ index, amount: 1 }) }>
+                                        onClick={ () => updateAmountOfItems({ updatedItemBlock: itemBlock, amount: 1 }) }>
                                         +
                                     </button>
                                 </div>
@@ -121,8 +163,7 @@ export default function Home() {
             { isModalOpen ? (
                 <Modal isOpen={ isModalOpen }>
                     <AddItemBlock
-                        toggleModal={ toggleModal }
-                        setItemBlocks={ setItemBlocks } />
+                        toggleModal={ toggleModal } />
                 </Modal>
             ) : (null) }
 
@@ -130,8 +171,7 @@ export default function Home() {
                 <Modal isOpen={ isEditItemBlockModalOpen }>
                     <EditItemBlock 
                         itemBlock={ editingItemBlock }
-                        toggleModal={ toggleEditItemBlockModal }
-                        setItemBlocks={ setItemBlocks } />
+                        toggleModal={ toggleEditItemBlockModal } />
                 </Modal>
             ) : (null) }
         </div>

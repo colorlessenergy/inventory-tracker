@@ -5,7 +5,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 15px 10px 15px;
+  margin: 10px 0 0 0;
   padding: 20px 15px;
   width: 100%;
 }
@@ -76,6 +76,11 @@ body.modal-is-open {
   background-color: $red;
 }
 
+.button-white {
+  background: $white;
+  border: 3px solid #000;
+}
+
 .text-large {
   font-size: 40px;
 }
@@ -88,4 +93,5 @@ body.modal-is-open {
 
 .container {
   margin: 0 10px;
+  padding-bottom: 75px;
 }
